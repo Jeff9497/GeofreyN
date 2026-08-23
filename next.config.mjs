@@ -2,14 +2,13 @@
 const nextConfig = {
   async rewrites() {
     return [
-      // Route /portfolio/* to the old Vercel portfolio
       {
         source: '/portfolio',
-        destination: 'https://geofrey94.vercel.app',
+        destination: 'https://portfolio.geofreynjoroge.com',
       },
       {
         source: '/portfolio/:path*',
-        destination: 'https://geofrey94.vercel.app/:path*',
+        destination: 'https://portfolio.geofreynjoroge.com/:path*',
       },
     ];
   },

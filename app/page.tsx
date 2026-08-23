@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // ─────────────────────────────────────────────────────────────
 // DATA
@@ -41,35 +41,15 @@ const PROJECTS: Project[] = [
     status: 'research',
   },
   {
-    title: 'Level Breaks EA',
-    emoji: '📈',
-    description:
-      'MQL5 Expert Advisor trading V75 Index on Deriv. v5.1 achieves 75.4% win rate and 1.83 profit factor across 394 trades using session blocks and directional hour filters. XGBoost brain scaffolded for future retraining at 1200+ trades.',
-    tags: ['MQL5', 'XGBoost', 'MT5', 'Python', 'Discord'],
-    accentColor: '#F59E0B',
-    github: 'https://github.com/Jeff9497/MyTradingEAs',
-    status: 'live',
-  },
-  {
     title: 'Dev Blog',
     emoji: '✍️',
     description:
       'Research blog documenting mechanistic interpretability findings — 4 published posts. Built with Next.js 15, MDX, KaTeX for math rendering, and rehype-pretty-code for syntax. Tagging @NeelNanda5 for research reach.',
     tags: ['Next.js 15', 'MDX', 'TailwindCSS', 'KaTeX'],
     accentColor: '#3B82F6',
-    link: 'https://geofreynjoroge.com/blog',
+    link: 'https://blog.geofreynjoroge.com',
     github: 'https://github.com/Jeff9497/Blog',
     status: 'live',
-  },
-  {
-    title: 'Balti',
-    emoji: '🎙️',
-    description:
-      'Offline Android voice assistant running on Termux. Wake word → Groq LLM → intent routing → Navidrome music control via mpv IPC, Edge TTS speech, alarms, app launching. SQLite memory with recency decay.',
-    tags: ['Python', 'Groq', 'Termux', 'SQLite', 'mpv'],
-    accentColor: '#EC4899',
-    github: 'https://github.com/Jeff9497/Balti',
-    status: 'active',
   },
   {
     title: 'Gattai',
@@ -235,7 +215,7 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="https://geofreynjoroge.com/blog"
+            href="https://blog.geofreynjoroge.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -258,6 +238,31 @@ function Navbar() {
             }}
           >
             Blog ↗
+          </a>
+          <a
+            href="https://portfolio.geofreynjoroge.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '0.45rem 1.2rem',
+              border: '1px solid rgba(124,58,237,0.4)',
+              borderRadius: '6px',
+              color: '#A855F7',
+              textDecoration: 'none',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              transition: 'background 0.2s, color 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#7C3AED';
+              e.currentTarget.style.color = '#ffffff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = '#A855F7';
+            }}
+          >
+            Portfolio ↗
           </a>
         </div>
 
@@ -323,10 +328,16 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="https://geofreynjoroge.com/blog"
+            href="https://blog.geofreynjoroge.com"
             style={{ color: '#00D4A8', textDecoration: 'none', fontSize: '1.1rem' }}
           >
             Blog ↗
+          </a>
+          <a
+            href="https://portfolio.geofreynjoroge.com"
+            style={{ color: '#A855F7', textDecoration: 'none', fontSize: '1.1rem' }}
+          >
+            Portfolio ↗
           </a>
         </div>
       )}
@@ -499,7 +510,7 @@ function Hero() {
           }}
         >
           <a href="#projects" className="btn-primary">View Projects →</a>
-          <a href="https://geofreynjoroge.com/blog" className="btn-outline">Read Blog</a>
+          <a href="https://blog.geofreynjoroge.com" className="btn-outline">Read Blog</a>
           <a href="https://github.com/Jeff9497" target="_blank" rel="noopener noreferrer" className="btn-ghost">
             GitHub ↗
           </a>
@@ -701,7 +712,7 @@ function Projects() {
       {/* Portfolio link */}
       <div className="scroll-reveal" style={{ marginTop: '3rem', textAlign: 'center' }}>
         <a
-          href="/portfolio"
+          href="https://portfolio.geofreynjoroge.com"
           style={{
             color: 'rgba(255,255,255,0.4)',
             fontSize: '0.85rem',
@@ -721,7 +732,7 @@ function Projects() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// SKILLS — Technical Arsenal
+// SKILLS — Languages & Tools
 // ─────────────────────────────────────────────────────────────
 
 function SkillBar({ skill, go }: { skill: Skill; go: boolean }) {
@@ -763,7 +774,7 @@ function Skills() {
             Capabilities
           </p>
           <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)', fontWeight: 800 }}>
-            Technical{' '}
+            Languages{' '}
             <span
               style={{
                 background: 'linear-gradient(135deg, #00D4A8, #7C3AED)',
@@ -771,7 +782,7 @@ function Skills() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Arsenal
+              & Tools
             </span>
           </h2>
         </div>
@@ -878,7 +889,7 @@ function BlogSection() {
           </p>
         </div>
         <a
-          href="https://geofreynjoroge.com/blog"
+          href="https://blog.geofreynjoroge.com"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -907,7 +918,7 @@ function BlogSection() {
         {BLOG_POSTS.map((post, i) => (
           <a
             key={i}
-            href="https://geofreynjoroge.com/blog"
+            href="https://blog.geofreynjoroge.com"
             target="_blank"
             rel="noopener noreferrer"
             className="blog-card scroll-reveal"
@@ -945,7 +956,7 @@ function Contact() {
     { label: 'GitHub',        href: 'https://github.com/Jeff9497',           color: 'rgba(255,255,255,0.75)' },
     { label: 'HuggingFace',   href: 'https://huggingface.co/Jeff28',         color: '#FF9D00' },
     { label: 'Email',         href: 'mailto:jeffkamau9497@gmail.com',         color: '#00D4A8' },
-    { label: 'Dev Blog',      href: 'https://geofreynjoroge.com/blog',        color: '#7C3AED' },
+    { label: 'Dev Blog',      href: 'https://blog.geofreynjoroge.com',        color: '#7C3AED' },
   ];
 
   return (
@@ -1063,7 +1074,7 @@ function Footer() {
         <div style={{ display: 'flex', gap: '2rem' }}>
           {[
             { label: 'GitHub', href: 'https://github.com/Jeff9497' },
-            { label: 'Blog', href: 'https://geofreynjoroge.com/blog' },
+            { label: 'Blog', href: 'https://blog.geofreynjoroge.com' },
             { label: 'HuggingFace', href: 'https://huggingface.co/Jeff28' },
           ].map(({ label, href }) => (
             <a
