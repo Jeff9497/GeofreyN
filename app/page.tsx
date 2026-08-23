@@ -3,6 +3,58 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // ─────────────────────────────────────────────────────────────
+// ICONS
+// ─────────────────────────────────────────────────────────────
+
+function IconGitHub({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+    </svg>
+  );
+}
+
+function IconMail({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m22 7-10 7L2 7"/>
+    </svg>
+  );
+}
+
+function IconBook({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg>
+  );
+}
+
+function IconHF({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="10" r="7"/>
+      <circle cx="9" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+      <path d="M8.5 13.5 Q12 16.5 15.5 13.5"/>
+      <path d="M5 19 Q8.5 16 12 19 Q15.5 16 19 19"/>
+    </svg>
+  );
+}
+
+function IconExternalLink({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
 // DATA
 // ─────────────────────────────────────────────────────────────
 
@@ -10,7 +62,6 @@ const NAV_ITEMS = ['Home', 'Projects', 'Skills', 'Blog', 'Contact'];
 
 interface Project {
   title: string;
-  emoji: string;
   description: string;
   tags: string[];
   accentColor: string;
@@ -22,7 +73,6 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     title: 'Kroniqo',
-    emoji: '🧠',
     description:
       'AI agent that "ages" via a SQLite Consequence Graph with recency decay (e^−0.03×days). Multi-backend LLM routing across 7 providers, proactive outreach, sub-agent system, and a FastAPI analytics dashboard with Chart.js.',
     tags: ['Python', 'FastAPI', 'SQLite', 'Groq', 'Telegram'],
@@ -32,7 +82,6 @@ const PROJECTS: Project[] = [
   },
   {
     title: 'CircuitLens',
-    emoji: '🔬',
     description:
       'Full-stack mechanistic interpretability platform on TransformerLens + FastAPI + Next.js. Key findings: L11·H31 confirmed as Llama-3.2-1B\'s IOI name-mover head; parametric memory collapses from 98% → 1.6% under adversarial repetition.',
     tags: ['TransformerLens', 'FastAPI', 'Next.js', 'PyTorch'],
@@ -42,9 +91,8 @@ const PROJECTS: Project[] = [
   },
   {
     title: 'Dev Blog',
-    emoji: '✍️',
     description:
-      'Research blog documenting mechanistic interpretability findings — 4 published posts. Built with Next.js 15, MDX, KaTeX for math rendering, and rehype-pretty-code for syntax. Tagging @NeelNanda5 for research reach.',
+      'Research blog documenting mechanistic interpretability findings — 4 published posts. Built with Next.js 15, MDX, KaTeX for math rendering, and rehype-pretty-code for syntax.',
     tags: ['Next.js 15', 'MDX', 'TailwindCSS', 'KaTeX'],
     accentColor: '#3B82F6',
     link: 'https://blog.geofreynjoroge.com',
@@ -53,7 +101,6 @@ const PROJECTS: Project[] = [
   },
   {
     title: 'Gattai',
-    emoji: '⚡',
     description:
       'Unified AI orchestration layer — combining specialised agents for seamless multi-task execution across complex, multi-step workflows. Designed for scenarios where single agents fall short.',
     tags: ['Python', 'Multi-Agent', 'Orchestration'],
@@ -77,15 +124,15 @@ const LANGUAGE_SKILLS: Skill[] = [
   { name: 'Python', level: 95 },
   { name: 'JavaScript / TypeScript', level: 82 },
   { name: 'MQL5', level: 78 },
-  { name: 'SQL', level: 75 },
-  { name: 'Bash / Shell', level: 72 },
-  { name: 'C++', level: 65 },
+  { name: 'SQL', level: 84 },
+  { name: 'Bash / Shell', level: 85 },
+  { name: 'C++', level: 81 },
 ];
 
 const TOOLS = [
   'Git', 'GitHub', 'Groq API', 'Ollama', 'llama.cpp', 'Cloudflare',
   'Vercel', 'Google Colab', 'Tailscale', 'Telegram Bot API',
-  'Discord Webhooks', 'Supabase', 'Docker', 'Jupyter', 'MT5 / Deriv',
+  'Discord Webhooks', 'Supabase', 'Docker', 'Jupyter',
 ];
 
 interface BlogPost { title: string; tags: string[]; excerpt: string }
@@ -237,7 +284,7 @@ function Navbar() {
               e.currentTarget.style.color = '#00D4A8';
             }}
           >
-            Blog ↗
+            Blog
           </a>
           <a
             href="https://portfolio.geofreynjoroge.com"
@@ -262,7 +309,7 @@ function Navbar() {
               e.currentTarget.style.color = '#A855F7';
             }}
           >
-            Portfolio ↗
+            Portfolio
           </a>
         </div>
 
@@ -331,13 +378,13 @@ function Navbar() {
             href="https://blog.geofreynjoroge.com"
             style={{ color: '#00D4A8', textDecoration: 'none', fontSize: '1.1rem' }}
           >
-            Blog ↗
+            Blog
           </a>
           <a
             href="https://portfolio.geofreynjoroge.com"
             style={{ color: '#A855F7', textDecoration: 'none', fontSize: '1.1rem' }}
           >
-            Portfolio ↗
+            Portfolio
           </a>
         </div>
       )}
@@ -493,10 +540,11 @@ function Hero() {
             animation: 'heroSlide 0.8s ease 0.3s both',
           }}
         >
-          Computer Scientist & AI Researcher from{' '}
-          <span style={{ color: '#00D4A8', fontWeight: 500 }}>Nairobi, Kenya</span>. I study
-          what AI systems actually know versus what they claim to know — and build systems
-          that behave honestly under uncertainty.
+          Computer Scientist from{' '}
+          <span style={{ color: '#00D4A8', fontWeight: 500 }}>Nairobi, Kenya</span>.
+          {' '}I design and build systems from the ground up — research platforms,
+          AI agents with long-term memory, full-stack web applications, and distributed
+          infrastructure. Clean code, real deployments.
         </p>
 
         {/* CTAs */}
@@ -509,10 +557,10 @@ function Hero() {
             animation: 'heroSlide 0.8s ease 0.4s both',
           }}
         >
-          <a href="#projects" className="btn-primary">View Projects →</a>
+          <a href="#projects" className="btn-primary">View Projects</a>
           <a href="https://blog.geofreynjoroge.com" className="btn-outline">Read Blog</a>
           <a href="https://github.com/Jeff9497" target="_blank" rel="noopener noreferrer" className="btn-ghost">
-            GitHub ↗
+            GitHub
           </a>
         </div>
 
@@ -528,9 +576,8 @@ function Hero() {
           }}
         >
           {[
-            { v: '6+', label: 'Projects Built', accent: false },
-            { v: '4',  label: 'Research Posts', accent: true },
-            { v: '75.4%', label: 'EA Win Rate', accent: false },
+            { v: '10+', label: 'Projects Built', accent: false },
+            { v: '4',   label: 'Research Posts', accent: true },
             { v: '2025', label: 'CS Graduate', accent: false },
           ].map(({ v, label, accent }) => (
             <div key={label}>
@@ -601,12 +648,9 @@ function ProjectCard({ p }: { p: Project }) {
       />
 
       <div style={{ padding: '1.6rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-        {/* Icon + title row */}
+        {/* Title row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <span style={{ fontSize: '1.5rem' }}>{p.emoji}</span>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'white' }}>{p.title}</h3>
-          </div>
+          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'white', letterSpacing: '-0.01em' }}>{p.title}</h3>
           <StatusBadge status={p.status} />
         </div>
 
@@ -623,7 +667,7 @@ function ProjectCard({ p }: { p: Project }) {
         </div>
 
         {/* Links */}
-        <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.25rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', paddingTop: '0.25rem', alignItems: 'center' }}>
           {p.github && (
             <a
               href={p.github}
@@ -631,17 +675,18 @@ function ProjectCard({ p }: { p: Project }) {
               rel="noopener noreferrer"
               style={{
                 fontSize: '0.8rem',
-                color: 'rgba(255,255,255,0.45)',
+                color: 'rgba(255,255,255,0.4)',
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.3rem',
+                gap: '0.4rem',
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
             >
-              ⌥ GitHub
+              <IconGitHub size={14} />
+              GitHub
             </a>
           )}
           {p.link && (
@@ -655,13 +700,14 @@ function ProjectCard({ p }: { p: Project }) {
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.3rem',
+                gap: '0.4rem',
                 transition: 'opacity 0.2s',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.75')}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             >
-              ↗ Visit
+              <IconExternalLink size={13} />
+              Live
             </a>
           )}
         </div>
@@ -724,7 +770,7 @@ function Projects() {
           onMouseEnter={(e) => { e.currentTarget.style.color = '#00D4A8'; e.currentTarget.style.borderColor = '#00D4A8'; }}
           onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}
         >
-          View full portfolio archive →
+          View full portfolio archive
         </a>
       </div>
     </section>
@@ -903,7 +949,7 @@ function BlogSection() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
         >
-          All posts ↗
+          All posts
         </a>
       </div>
 
@@ -937,8 +983,8 @@ function BlogSection() {
             <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.42)', lineHeight: 1.7 }}>
               {post.excerpt}
             </p>
-            <p style={{ fontSize: '0.78rem', color: '#00D4A8', marginTop: '1rem', fontWeight: 500 }}>
-              Read on blog ↗
+            <p style={{ fontSize: '0.78rem', color: '#00D4A8', marginTop: '1rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <IconBook size={13} /> Read post
             </p>
           </a>
         ))}
@@ -951,12 +997,82 @@ function BlogSection() {
 // CONTACT
 // ─────────────────────────────────────────────────────────────
 
+interface ContactLink {
+  label: string;
+  href: string;
+  color: string;
+  borderColor: string;
+  icon: React.ReactNode;
+}
+
+function ContactCard({ link }: { link: ContactLink }) {
+  return (
+    <a
+      href={link.href}
+      target={link.href.startsWith('mailto') ? undefined : '_blank'}
+      rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.75rem',
+        padding: '1.75rem 2rem',
+        borderRadius: '12px',
+        border: `1px solid ${link.borderColor}`,
+        color: link.color,
+        textDecoration: 'none',
+        transition: 'background 0.2s, transform 0.2s, border-color 0.2s',
+        minWidth: '120px',
+        flex: '1 1 120px',
+        maxWidth: '160px',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = `${link.color}0d`;
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.borderColor = link.color;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = 'transparent';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = link.borderColor;
+      }}
+    >
+      <span style={{ opacity: 0.9 }}>{link.icon}</span>
+      <span style={{ fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.02em' }}>{link.label}</span>
+    </a>
+  );
+}
+
 function Contact() {
-  const links = [
-    { label: 'GitHub',        href: 'https://github.com/Jeff9497',           color: 'rgba(255,255,255,0.75)' },
-    { label: 'HuggingFace',   href: 'https://huggingface.co/Jeff28',         color: '#FF9D00' },
-    { label: 'Email',         href: 'mailto:jeffkamau9497@gmail.com',         color: '#00D4A8' },
-    { label: 'Dev Blog',      href: 'https://blog.geofreynjoroge.com',        color: '#7C3AED' },
+  const links: ContactLink[] = [
+    {
+      label: 'GitHub',
+      href: 'https://github.com/Jeff9497',
+      color: 'rgba(255,255,255,0.85)',
+      borderColor: 'rgba(255,255,255,0.12)',
+      icon: <IconGitHub size={26} />,
+    },
+    {
+      label: 'HuggingFace',
+      href: 'https://huggingface.co/Jeff28',
+      color: '#FF9D00',
+      borderColor: 'rgba(255,157,0,0.2)',
+      icon: <IconHF size={26} />,
+    },
+    {
+      label: 'Email',
+      href: 'mailto:jeffkamau9497@gmail.com',
+      color: '#00D4A8',
+      borderColor: 'rgba(0,212,168,0.2)',
+      icon: <IconMail size={26} />,
+    },
+    {
+      label: 'Dev Blog',
+      href: 'https://blog.geofreynjoroge.com',
+      color: '#A855F7',
+      borderColor: 'rgba(168,85,247,0.2)',
+      icon: <IconBook size={26} />,
+    },
   ];
 
   return (
@@ -974,7 +1090,7 @@ function Contact() {
             Get in touch
           </p>
           <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)', fontWeight: 800, marginBottom: '1.25rem' }}>
-            Let's{' '}
+            Let&apos;s{' '}
             <span
               style={{
                 background: 'linear-gradient(135deg, #00D4A8, #7C3AED)',
@@ -985,58 +1101,35 @@ function Contact() {
               Connect
             </span>
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '2.75rem' }}>
-            Open to research collaborations, ML engineering roles, and interesting problems at the
-            intersection of interpretability and real-world AI systems.
+          <p style={{ color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '2.5rem' }}>
+            Open to engineering roles, research collaborations, and interesting problems
+            worth building solutions for.
           </p>
 
-          {/* Location */}
+          {/* Location pill — no emoji */}
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              padding: '0.45rem 1.1rem',
+              padding: '0.4rem 1.1rem',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '100px',
-              color: 'rgba(255,255,255,0.45)',
-              fontSize: '0.82rem',
-              marginBottom: '2.5rem',
+              color: 'rgba(255,255,255,0.4)',
+              fontSize: '0.8rem',
+              marginBottom: '2.75rem',
+              letterSpacing: '0.03em',
             }}
           >
-            📍 Nairobi, Kenya (EAT, UTC+3)
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="rgba(0,212,168,0.7)" aria-hidden="true">
+              <circle cx="5" cy="5" r="4"/>
+            </svg>
+            Nairobi, Kenya — EAT (UTC+3)
           </div>
 
-          {/* Links */}
+          {/* Icon link cards */}
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {links.map(({ label, href, color }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('mailto') ? undefined : '_blank'}
-                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                style={{
-                  padding: '0.7rem 1.5rem',
-                  borderRadius: '8px',
-                  border: `1px solid ${color}35`,
-                  color,
-                  textDecoration: 'none',
-                  fontSize: '0.88rem',
-                  fontWeight: 500,
-                  transition: 'background 0.2s, transform 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = `${color}12`;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                {label} ↗
-              </a>
-            ))}
+            {links.map((link) => <ContactCard key={link.label} link={link} />)}
           </div>
         </div>
       </div>
