@@ -105,7 +105,8 @@ const PROJECTS: Project[] = [
       'Unified AI orchestration layer — combining specialised agents for seamless multi-task execution across complex, multi-step workflows. Designed for scenarios where single agents fall short.',
     tags: ['Python', 'Multi-Agent', 'Orchestration'],
     accentColor: '#06B6D4',
-    status: 'coming-soon',
+    github: 'https://github.com/Jeff9497/Gattai-LM',
+    status: 'active',
   },
 ];
 
@@ -250,8 +251,7 @@ function Navbar() {
             color: 'white',
           }}
         >
-          <span style={{ color: '#00D4A8' }}>G</span>N
-          <span style={{ color: '#00D4A8', fontSize: '1.3rem' }}>.</span>
+          <span style={{ color: '#00D4A8' }}>G</span>N<span style={{ color: '#00D4A8' }}>K</span>
         </a>
 
         {/* Desktop links */}
@@ -267,21 +267,22 @@ function Navbar() {
             rel="noopener noreferrer"
             style={{
               padding: '0.45rem 1.2rem',
-              border: '1px solid rgba(0,212,168,0.4)',
+              background: 'linear-gradient(135deg, #00D4A8 0%, #7C3AED 100%)',
+              border: 'none',
               borderRadius: '6px',
-              color: '#00D4A8',
+              color: 'white',
               textDecoration: 'none',
               fontSize: '0.85rem',
-              fontWeight: 500,
-              transition: 'background 0.2s, color 0.2s',
+              fontWeight: 600,
+              transition: 'opacity 0.2s, transform 0.15s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#00D4A8';
-              e.currentTarget.style.color = '#080808';
+              e.currentTarget.style.opacity = '0.85';
+              e.currentTarget.style.transform = 'translateY(-1px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#00D4A8';
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             Blog
@@ -292,21 +293,22 @@ function Navbar() {
             rel="noopener noreferrer"
             style={{
               padding: '0.45rem 1.2rem',
-              border: '1px solid rgba(124,58,237,0.4)',
+              background: 'linear-gradient(135deg, #7C3AED 0%, #00D4A8 100%)',
+              border: 'none',
               borderRadius: '6px',
-              color: '#A855F7',
+              color: 'white',
               textDecoration: 'none',
               fontSize: '0.85rem',
-              fontWeight: 500,
-              transition: 'background 0.2s, color 0.2s',
+              fontWeight: 600,
+              transition: 'opacity 0.2s, transform 0.15s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#7C3AED';
-              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.opacity = '0.85';
+              e.currentTarget.style.transform = 'translateY(-1px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#A855F7';
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             Portfolio
@@ -376,13 +378,27 @@ function Navbar() {
           ))}
           <a
             href="https://blog.geofreynjoroge.com"
-            style={{ color: '#00D4A8', textDecoration: 'none', fontSize: '1.1rem' }}
+            style={{
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              background: 'linear-gradient(135deg, #00D4A8, #7C3AED)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
             Blog
           </a>
           <a
             href="https://portfolio.geofreynjoroge.com"
-            style={{ color: '#A855F7', textDecoration: 'none', fontSize: '1.1rem' }}
+            style={{
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              background: 'linear-gradient(135deg, #7C3AED, #00D4A8)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
             Portfolio
           </a>
@@ -524,7 +540,7 @@ function Hero() {
               animation: 'heroSlide 0.8s ease 0.2s both',
             }}
           >
-            Kamau
+            KAMAU
             <span style={{ color: '#00D4A8', fontWeight: 700 }}>.</span>
           </p>
         </div>
@@ -1061,7 +1077,7 @@ function Contact() {
     },
     {
       label: 'Email',
-      href: 'mailto:jeffkamau9497@gmail.com',
+      href: 'mailto:kamau@geofreynjoroge.com',
       color: '#00D4A8',
       borderColor: 'rgba(0,212,168,0.2)',
       icon: <IconMail size={26} />,
