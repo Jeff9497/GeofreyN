@@ -44,6 +44,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          defer
+          src="https://umami-production-d51e.up.railway.app/script.js"
+          data-website-id="544438f4-3d1b-4a7e-a744-c2b54d1a8f9f"
+        />
       </head>
       <body>{children}</body>
     </html>
