@@ -26,4 +26,3 @@ npm run dev
 
 ## Deploy
 
-Push to `main` — Vercel auto-deploys. Set custom domain `geofreynjoroge.com` in Vercel project settings.
